@@ -2,7 +2,7 @@
 
 require './connection.php';
 
-$country = "Spain";
+$country = "Lithuania";
 
 $a = "SELECT c.id, c.name, c.created_at, c.updated_at, ci.id, ci.name,
     ci.created_at, ci.updated_at
@@ -12,5 +12,9 @@ $a = "SELECT c.id, c.name, c.created_at, c.updated_at, ci.id, ci.name,
 
 $statement = $connection->prepare($a);
 $statement->execute(['name'=>$country]);
-$data = $statement->fetchAll(\PDO::FETCH_ASSOC);
-print_r($data);
+$data = $statement->fetchAll(\PDO::FETCH_BOTH);
+echo $data[0][1] . PHP_EOL;
+foreach ($data as $value) {
+    echo $value[5] . PHP_EOL;
+}
+//print_r($data);
