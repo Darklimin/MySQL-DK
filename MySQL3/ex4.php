@@ -12,8 +12,5 @@ LEFT JOIN staff AS s ON p.staff_id = s.id WHERE c.first_name = :fName AND s.firs
 $statement = $connection->prepare($a);
 $statement->execute(['fName'=>$fName, 'lName'=>$lName]);
 $data = $statement->fetchAll(\PDO::FETCH_BOTH);
-//echo $data[0][0] . PHP_EOL;
-//foreach ($data as $value) {
-//    echo $value['name'] . PHP_EOL;
-//}
+
 print_r($data);
