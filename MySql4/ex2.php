@@ -4,10 +4,10 @@ require './connection.php';
 
 $idnum = 5;
 
-$a = "SELECT MIN(f.rental_rate), MAX(f.rental_rate), fc.category_id
+$a = "SELECT MIN(f.rental_rate) AS rr, MAX(f.rental_rate), fc.category_id
 FROM film AS f JOIN film_category AS fc ON f.id = fc.film_id
 GROUP BY fc.category_id
-HAVING fc.category_id < :idnum";
+HAVING rr < :idnum";
 
 $statement = $connection->prepare($a);
 $statement->execute(['idnum'=>$idnum]);
